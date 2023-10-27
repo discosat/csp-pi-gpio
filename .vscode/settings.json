@@ -1,0 +1,13 @@
+{
+    "C_Cpp.default.compileCommands": "builddir/compile_commands.json",
+    "files.associations": {
+        "*.ejs": "html",
+        "csp_if_zmqhub.h": "c",
+        "vmem_server.h": "c",
+        "csp_iflist.h": "c",
+        "vmem_file.h": "c",
+        "param_server.h": "c",
+        "unistd.h": "c",
+        "param.h": "c"
+    }
+}
