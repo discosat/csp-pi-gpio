@@ -21,15 +21,16 @@ void gpio_init() {
     printf("gpio: %p\n", gpio);
 
 
-    // Read mode from vmem and set it
+    // Reset GPIO pins
     for (int i = 0; i < 32; i++) {
         int mode = param_get_uint8_array(&gpio_modes, i);
         gpio_set_mode(i, mode);
 
         if (mode == GPIO_MODE_OUTPUT) {
             printf("Initializing output %d\n", i);
-            gpio_write(i, param_get_uint8_array(&gpio_outputs, i));
+            //gpio_write(i, param_get_uint8_array(&gpio_outputs, i));
             param_set_uint8_array(&gpio_inputs, i, 0);
+            param_set_uint8_array(&gpio_outputs, i, 0);
         } else if (mode == GPIO_MODE_INPUT) {
             printf("Initializing input %d\n", i);
             param_set_uint8_array(&gpio_inputs, i, gpio_read(i));

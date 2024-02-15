@@ -7,3 +7,6 @@
 [submodule "lib/param"]
 	path = lib/param
 	url = https://github.com/spaceinventor/libparam.git
+[submodule "lib/slash"]
+	path = lib/slash
+	url = https://github.com/spaceinventor/slash.git
