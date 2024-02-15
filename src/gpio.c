@@ -31,10 +31,12 @@ void gpio_init() {
             //gpio_write(i, param_get_uint8_array(&gpio_outputs, i));
             param_set_uint8_array(&gpio_inputs, i, 0);
             param_set_uint8_array(&gpio_outputs, i, 0);
+            gpio_write(i, 0);
         } else if (mode == GPIO_MODE_INPUT) {
             printf("Initializing input %d\n", i);
             param_set_uint8_array(&gpio_inputs, i, gpio_read(i));
             param_set_uint8_array(&gpio_outputs, i, 0);
+            gpio_write(i, 0);
         }
     }
 }
