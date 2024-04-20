@@ -11,7 +11,7 @@ project('app', 'c', subproject_dir: 'lib', default_options: [
 	'csp:qfifo_len=1000',
 	'csp:rdp_max_window=1000',
 	'csp:port_max_bind=16',
-	'csp:have_rtable=true',
+	'csp:use_rtable=true',
 	'param:have_fopen=true', 
 	'param:collector=false', 
 	'param:list_dynamic=true'
