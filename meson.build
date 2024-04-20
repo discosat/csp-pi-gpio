@@ -14,7 +14,11 @@ project('app', 'c', subproject_dir: 'lib', default_options: [
 	'csp:use_rtable=true',
 	'param:have_fopen=true', 
 	'param:collector=false', 
-	'param:list_dynamic=true'
+	'param:list_dynamic=true',
+	'csp_proc:slash=false',
+	'csp_proc:freertos=false',
+	'csp_proc:posix=true',
+	'csp_proc:RESERVED_PROC_SLOTS=10',
 ])
 
 add_global_arguments('-I../include', language: 'c')
@@ -42,8 +46,9 @@ endif
 
 
 deps = []
-deps += dependency('csp', fallback: ['csp', 'csp_dep'])
-deps += dependency('param', fallback: ['param', 'param_dep'])
+deps += dependency('csp',      fallback: ['csp', 'csp_dep'], required: true).as_link_whole()
+deps += dependency('param',    fallback: ['param', 'param_dep'], required: true).as_link_whole()
+deps += dependency('csp_proc', fallback: ['csp_proc', 'csp_proc_dep'], required: true).as_link_whole()
 
 csp_app = executable('app', sources,
 	dependencies : deps,

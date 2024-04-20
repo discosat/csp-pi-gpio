@@ -10,6 +10,7 @@
 #include <param/param_server.h>
 #include <vmem/vmem_file.h>
 #include <vmem/vmem_server.h>
+#include <csp_proc/proc_server.h>
 // Project headers
 #include "gpio.h"
 #include "hooks.h"
@@ -56,6 +57,11 @@ static void* tenhz_task(void* param) {
     return NULL;
 }
 
+static void proc_init_fun(void) {
+    proc_server_init();
+    csp_bind_callback(proc_serve, PROC_PORT_SERVER);
+}
+
 static void csp_init_fun(void) {
     csp_conf.hostname = "CSP-GPIO";
     csp_conf.model = "RPi3";
@@ -100,7 +106,7 @@ static void iface_zmq_init(void) {
 
 
     csp_iface_t* iface;
-    csp_zmqhub_init_filter2("ZMQ", "localhost", addr, mask, true, &iface, NULL);
+    csp_zmqhub_init_filter2("ZMQ", "localhost", addr, mask, true, &iface, NULL, 6000, 7000);
     
     iface->is_default = true;
     iface->addr = addr;
@@ -123,6 +129,9 @@ int main(void) {
 
     /* Init CSP */
     csp_init_fun();
+
+    /* Init csp_proc */
+    proc_init_fun();
 
     csp_print("Connection table\r\n");
     csp_conn_print_table();
