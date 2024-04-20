@@ -1,15 +1,9 @@
 [submodule "lib/csp"]
 	path = lib/csp
 	url = https://github.com/spaceinventor/libcsp.git
-[submodule "lib/pigpio"]
-	path = lib/pigpio
-	url = https://github.com/joan2937/pigpio.git
 [submodule "lib/param"]
 	path = lib/param
 	url = https://github.com/spaceinventor/libparam.git
-[submodule "lib/slash"]
-	path = lib/slash
-	url = https://github.com/spaceinventor/slash.git
 [submodule "lib/csp_proc"]
 	path = lib/csp_proc
 	url = https://github.com/discosat/csp_proc.git
