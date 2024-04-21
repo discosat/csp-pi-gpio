@@ -18,6 +18,7 @@ project('app', 'c', subproject_dir: 'lib', default_options: [
 	'csp_proc:slash=false',
 	'csp_proc:freertos=false',
 	'csp_proc:posix=true',
+	'csp_proc:proc_runtime=true',
 	'csp_proc:RESERVED_PROC_SLOTS=10',
 ])
 
