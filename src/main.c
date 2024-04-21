@@ -106,7 +106,7 @@ static void iface_zmq_init(void) {
 
 
     csp_iface_t* iface;
-    csp_zmqhub_init_filter2("ZMQ", "localhost", addr, mask, true, &iface, NULL, 6000, 7000);
+    csp_zmqhub_init_filter2("ZMQ", "localhost", addr, mask, true, &iface, NULL, CSP_ZMQPROXY_SUBSCRIBE_PORT, CSP_ZMQPROXY_PUBLISH_PORT);
     
     iface->is_default = true;
     iface->addr = addr;
