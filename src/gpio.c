@@ -23,7 +23,7 @@ void gpio_init() {
 
 
     // Reset GPIO pins
-    for (int i = 0; i < 32; i++) {
+    for (int i = 0; i < 28; i++) {
         int mode = param_get_uint8_array(&gpio_modes, i);
         gpio_set_mode(i, mode);
 
@@ -44,7 +44,7 @@ void gpio_init() {
     printf("VIRTUAL GPIO\n");
     fdgpio = 0;
     gpio = malloc(4096);
-    for (int i = 0; i < 32; i++) {
+    for (int i = 0; i < 28; i++) {
         printf("Setting virtual GPIO %d\n", i);
         gpio_set_mode(i, 0);
         param_set_uint8_array(&gpio_inputs, i, 0);
@@ -90,7 +90,7 @@ void gpio_set_mode(int pin, int mode) {
         printf("gpio not initialized\n");
         return;
     }
-    if (pin < 0 || pin > 31) {
+    if (pin < 0 || pin > 27) {
         printf("invalid pin\n");
         return;
     }
@@ -159,7 +159,7 @@ void gpio_write(int pin, int value) {
         printf("gpio not initialized\n");
         return;
     }
-    if (pin < 0 || pin > 31) {
+    if (pin < 0 || pin > 27) {
         printf("invalid pin\n");
         return;
     }
@@ -174,7 +174,7 @@ int gpio_read(int pin) {
         printf("gpio not initialized\n");
         return -1;
     }
-    if (pin < 0 || pin > 31) {
+    if (pin < 0 || pin > 27) {
         printf("invalid pin\n");
         return -1;
     }
@@ -182,7 +182,7 @@ int gpio_read(int pin) {
 }
 
 void gpio_input_polling_hook(void) {
-    for (int i = 0; i < 32; i++) {
+    for (int i = 0; i < 28; i++) {
         if (param_get_uint8_array(&gpio_modes, i) == GPIO_MODE_INPUT) {
             param_set_uint8_array(&gpio_inputs, i, gpio_read(i));
         } else {
