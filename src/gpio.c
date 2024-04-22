@@ -4,6 +4,7 @@ int fdgpio = -1;
 unsigned int* gpio;
 
 void gpio_init() {
+#ifndef VIRTUAL_GPIO
     if (fdgpio >= 0) {
         printf("gpio already initialized\n");
     }
@@ -39,6 +40,18 @@ void gpio_init() {
             gpio_write(i, 0);
         }
     }
+#else
+    printf("VIRTUAL GPIO\n");
+    fdgpio = 0;
+    gpio = malloc(4096);
+    for (int i = 0; i < 32; i++) {
+        printf("Setting virtual GPIO %d\n", i);
+        gpio_set_mode(i, 0);
+        param_set_uint8_array(&gpio_inputs, i, 0);
+        param_set_uint8_array(&gpio_outputs, i, 0);
+    }
+    printf("Virtual GPIO initialized\n");
+#endif
 }
 
 void gpio_terminate() {
@@ -46,9 +59,12 @@ void gpio_terminate() {
         printf("gpio not initialized\n");
     }
 
+#ifndef VIRTUAL_GPIO
     munmap(gpio, 4096);
     close(fdgpio);
+#endif
     fdgpio = -1;
+    free(gpio);
 }
 
 void gpio_param_set_value_callback(struct param_s *param, int offset) {
@@ -104,6 +120,9 @@ void gpio_set_mode(int pin, int mode) {
     // Push to register
     gpio[GP_FSEL + fseln] = fsel;
 
+#ifdef VIRTUAL_GPIO
+    printf("VIRTUAL, set mode %d to %d\n", pin, mode);
+#endif
 
     // Set Pull-up on input pins
 

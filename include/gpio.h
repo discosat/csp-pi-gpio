@@ -39,6 +39,10 @@
     #define GP_PULL_UP_DOWN (57)
 #endif
 
+#if !defined(RPI3) && !defined(RPI4)
+    #define VIRTUAL_GPIO
+#endif
+
 void gpio_init();
 void gpio_terminate();
 
