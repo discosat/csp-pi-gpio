@@ -9,5 +9,8 @@
 #define VMEM_CONF_GPIO_MODES_ADDR 0x10
 #define VMEM_CONF_GPIO_INPUTS_ADDR 0x2C
 #define VMEM_CONF_GPIO_OUTPUTS_ADDR 0x48
+// 8-bit values for zero and one
+#define VMEM_CONF_ZERO_ADDR 0x64
+#define VMEM_CONF_ONE_ADDR 0x65
 
 extern vmem_t vmem_config;

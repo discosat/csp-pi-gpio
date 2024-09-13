@@ -83,3 +83,32 @@ PARAM_DEFINE_STATIC_VMEM(
     config,
     VMEM_CONF_GPIO_INPUTS_ADDR,
     "Values for input GPIOs (0 = low, 1 = high)");
+
+const uint8_t zero = 0;
+const uint8_t one = 1;
+
+PARAM_DEFINE_STATIC_RAM(
+    PARAMID_ZERO,           // unique parameter id, from param_config.h
+    _zero,                  // param_t variable name, from param_config.h
+    PARAM_TYPE_UINT8,       // Available types in enum param_type_e in param.h
+    -1,                     // Number of elements/(bytes?) in the array. -1 for single values
+    0,                      // ??maybe element size in bytes. 0 for single values, 1 for arrays
+    PM_READONLY,            // See param.h; PM_SYSCONF for system/network config, PM_CONF for user config, PM_READONLY for read-only
+    NULL,                   // Callback function for when the value is set
+    NULL,                   // ?? Possibly the unit of the value, e.g. "m/s"
+    &zero,                  // Physical address of the value
+    "Constant value 0 (U8)" // Documentation string (for param info)
+);
+
+PARAM_DEFINE_STATIC_RAM(
+    PARAMID_ONE,            // unique parameter id, from param_config.h
+    _one,                   // param_t variable name, from param_config.h
+    PARAM_TYPE_UINT8,       // Available types in enum param_type_e in param.h
+    -1,                     // Number of elements/(bytes?) in the array. -1 for single values
+    0,                      // ??maybe element size in bytes. 0 for single values, 1 for arrays
+    PM_READONLY,            // See param.h; PM_SYSCONF for system/network config, PM_CONF for user config, PM_READONLY for read-only
+    NULL,                   // Callback function for when the value is set
+    NULL,                   // ?? Possibly the unit of the value, e.g. "m/s"
+    &one,                   // Physical address of the value
+    "Constant value 1 (U8)" // Documentation string (for param info)
+);
